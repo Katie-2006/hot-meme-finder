@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>梗捕手 - 网络热梗搜索</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="search-panel" aria-labelledby="app-title">
+        <div class="brand-row">
+          <div>
+            <p class="eyebrow">Meme Radar</p>
+            <h1 id="app-title">梗捕手</h1>
+          </div>
+          <button class="ghost-button" id="refreshBtn" type="button">刷新热度</button>
+        </div>
+
+        <form class="search-box" id="searchForm" action="./index.html">
+          <label for="searchInput">搜索网络热梗</label>
+          <div class="search-row">
+            <input
+              id="searchInput"
+              name="keyword"
+              autocomplete="off"
+              placeholder="输入关键词，比如：尊嘟假嘟、显眼包、电子榨菜"
+            />
+            <button type="submit">搜索</button>
+          </div>
+        </form>
+
+        <div class="filter-row" aria-label="分类筛选">
+          <button class="filter-chip active" data-filter="all" type="button">全部</button>
+          <button class="filter-chip" data-filter="短视频" type="button">短视频</button>
+          <button class="filter-chip" data-filter="社交平台" type="button">社交平台</button>
+          <button class="filter-chip" data-filter="游戏圈" type="button">游戏圈</button>
+          <button class="filter-chip" data-filter="影视综艺" type="button">影视综艺</button>
+          <button class="filter-chip" data-filter="生活表达" type="button">生活表达</button>
+        </div>
+      </section>
+
+      <section class="content-grid">
+        <aside class="sidebar" aria-label="热度榜">
+          <div class="section-title">
+            <h2>今日热度榜</h2>
+            <span id="resultCount">0 条</span>
+          </div>
+          <ol class="rank-list" id="rankList"></ol>
+        </aside>
+
+        <section class="results-area" aria-label="搜索结果">
+          <div class="toolbar">
+            <div>
+              <p class="eyebrow">Results</p>
+              <h2 id="resultsTitle">推荐热梗</h2>
+            </div>
+            <select id="sortSelect" aria-label="排序方式">
+              <option value="heat">按热度排序</option>
+              <option value="new">按更新时间</option>
+              <option value="name">按名称排序</option>
+            </select>
+          </div>
+
+          <div class="result-list" id="resultList"></div>
+          <div class="empty-state hidden" id="emptyState">
+            <h3>本地库暂时没收录</h3>
+            <p>这不代表它不是热梗。可以换个写法试试，或者点下面的平台入口查实时内容。</p>
+            <div class="live-links" id="emptyLiveLinks"></div>
+          </div>
+        </section>
+
+        <aside class="detail-panel" aria-label="热梗详情">
+          <div class="detail-card" id="detailCard">
+            <p class="eyebrow">Detail</p>
+            <h2>点一个梗看看</h2>
+            <p class="muted">这里会显示出处、含义、使用场景和实时搜索入口。</p>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <template id="memeCardTemplate">
+      <article class="meme-card">
+        <div class="card-header">
+          <div>
+            <span class="tag"></span>
+            <h3></h3>
+          </div>
+          <button class="save-button" type="button">收藏</button>
+        </div>
+        <p class="summary"></p>
+        <div class="meta-line">
+          <span class="heat"></span>
+          <span class="source"></span>
+        </div>
+      </article>
+    </template>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
